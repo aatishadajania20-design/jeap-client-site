@@ -1,17 +1,11 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { SITE } from "@/lib/site";
 import RevealText from "@/components/ui/RevealText";
 import Magnetic from "@/components/ui/Magnetic";
 import ContactForm from "@/components/sections/contact/ContactForm";
-
-const AtmosphereCanvas = dynamic(
-  () => import("@/components/webgl/AtmosphereCanvas"),
-  { ssr: false }
-);
 
 const CHANNELS = [
   { label: "General", value: SITE.email },
@@ -22,12 +16,8 @@ const CHANNELS = [
 export default function ContactPage() {
   return (
     <>
-      {/* Cinematic header with subtle moving WebGL field */}
-      <section className="relative flex min-h-[80svh] items-end overflow-hidden px-6 pb-16 pt-40 md:px-10">
-        <div className="absolute inset-0 opacity-60">
-          <AtmosphereCanvas intensity={0.6} />
-          <div className="absolute inset-0 bg-gradient-to-b from-noir/60 via-transparent to-noir" />
-        </div>
+      {/* Clean solid header — WebGL field removed (no shimmer outside the hero) */}
+      <section className="relative flex min-h-[80svh] items-end overflow-hidden bg-noir px-6 pb-16 pt-40 md:px-10">
         <div className="relative z-10 mx-auto w-full max-w-[1600px]">
           <div className="mb-10 flex items-center gap-5">
             <span className="font-body text-xs tracking-[0.3em] text-gold">04 / Contact</span>

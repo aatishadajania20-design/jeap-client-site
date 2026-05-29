@@ -5,7 +5,6 @@ import SmoothScroll from "@/components/providers/SmoothScroll";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Cursor from "@/components/ui/Cursor";
-import Grain from "@/components/ui/Grain";
 import Preloader from "@/components/layout/Preloader";
 import "./globals.css";
 
@@ -32,11 +31,11 @@ export default function RootLayout({
     <html lang="en" className={`${display.variable} ${inter.variable}`}>
       <body className="font-body antialiased">
         <Preloader />
-        {/* NOTE: the page-wide `.atmosphere` gradient was removed from here. As a
-            fixed z-0 layer behind transparent sections it washed every section
-            below the hero with a foggy gradient. Atmosphere now lives ONLY inside
-            the hero (its own WebGL canvas) and the contact header canvas. */}
-        <Grain />
+        {/* NOTE: Both the page-wide `.atmosphere` gradient AND the global film
+            `<Grain />` overlay were removed from here. As fixed full-viewport
+            layers they bled a moving haze/shimmer across every section below the
+            hero. All ambience now lives ONLY inside the hero's own WebGL canvas;
+            every other section renders on a clean, fully opaque background. */}
         <Cursor />
         <SmoothScroll>
           <Navbar />
