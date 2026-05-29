@@ -32,12 +32,15 @@ export default function RootLayout({
     <html lang="en" className={`${display.variable} ${inter.variable}`}>
       <body className="font-body antialiased">
         <Preloader />
-        <div className="atmosphere" />
+        {/* NOTE: the page-wide `.atmosphere` gradient was removed from here. As a
+            fixed z-0 layer behind transparent sections it washed every section
+            below the hero with a foggy gradient. Atmosphere now lives ONLY inside
+            the hero (its own WebGL canvas) and the contact header canvas. */}
         <Grain />
         <Cursor />
         <SmoothScroll>
           <Navbar />
-          <main className="relative z-10">{children}</main>
+          <main className="relative z-10 bg-noir">{children}</main>
           <Footer />
         </SmoothScroll>
       </body>

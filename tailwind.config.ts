@@ -16,8 +16,8 @@ const config: Config = {
           700: "#16161c",
         },
         ink: "#050506",
-        bone: "#ece7dd",
-        ash: "#8a857c",
+        bone: "#f3efe7",
+        ash: "#b6b1a7",
         // Rich gold accents
         gold: {
           DEFAULT: "#c9a25a",

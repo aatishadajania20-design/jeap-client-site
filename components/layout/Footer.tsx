@@ -7,7 +7,7 @@ import Magnetic from "@/components/ui/Magnetic";
 
 export default function Footer() {
   return (
-    <footer className="relative z-10 overflow-hidden border-t border-white/5 px-6 pb-10 pt-24 md:px-10">
+    <footer className="relative z-10 overflow-hidden border-t border-gold/20 bg-noir px-6 pb-10 pt-24 md:px-10">
       <div className="mx-auto max-w-[1600px]">
         <div className="flex flex-col gap-16 lg:flex-row lg:items-end lg:justify-between">
           <div>
