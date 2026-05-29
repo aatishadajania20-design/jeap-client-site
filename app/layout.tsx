@@ -5,6 +5,7 @@ import SmoothScroll from "@/components/providers/SmoothScroll";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Cursor from "@/components/ui/Cursor";
+import ScrollProgress from "@/components/ui/ScrollProgress";
 import Preloader from "@/components/layout/Preloader";
 import "./globals.css";
 
@@ -38,6 +39,7 @@ export default function RootLayout({
             every other section renders on a clean, fully opaque background. */}
         <Cursor />
         <SmoothScroll />
+        <ScrollProgress />
         <Navbar />
         <main className="relative z-10 bg-noir">{children}</main>
         <Footer />
