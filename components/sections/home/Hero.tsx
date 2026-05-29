@@ -219,7 +219,19 @@ export default function Hero() {
         <h1
           ref={title}
           className="display text-gold will-change-transform"
-          style={{ letterSpacing: "-0.025em", lineHeight: 0.98 }}
+          style={{
+            // Typography refinement: lift the variable-font weight from the
+            // global 300 to an intermediate editorial weight for authority —
+            // heavier presence, still well short of bold. Optical sizing stays
+            // automatic (Fraunces opsz axis) so the large scale keeps its high
+            // thick/thin contrast. Slightly tighter tracking + a soft depth
+            // shadow give it physical weight and readability over the bloom.
+            fontWeight: 440,
+            letterSpacing: "-0.03em",
+            lineHeight: 0.98,
+            fontOpticalSizing: "auto",
+            textShadow: "0 1px 28px rgba(0,0,0,0.45)",
+          }}
         >
           {TITLE_LINES.map((l, i) => (
             <span key={i} className="block overflow-hidden pb-[0.1em]">
