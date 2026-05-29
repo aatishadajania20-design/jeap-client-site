@@ -66,9 +66,12 @@ function Plane({ tint }: { tint: string }) {
 export default function DistortField({ tint = "#c9a25a" }: { tint?: string }) {
   return (
     <Canvas
-      className="!absolute inset-0"
+      // pointer-events-none: the canvas never hit-tests, so it adds no input
+      // overhead and never blocks the card's hover / the page scroll.
+      className="!absolute inset-0 !pointer-events-none"
       gl={{ antialias: false, alpha: true, powerPreference: "high-performance" }}
-      dpr={[1, 1.5]}
+      dpr={[1, 1.25]}
+      frameloop="always"
     >
       <Plane tint={tint} />
     </Canvas>
