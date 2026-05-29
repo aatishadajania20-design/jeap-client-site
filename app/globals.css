@@ -1,0 +1,184 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --gold: #c9a25a;
+  --bone: #ece7dd;
+  --noir: #070707;
+  --ease-luxe: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  background-color: var(--noir);
+  color: var(--bone);
+  /* Lenis controls scroll; keep native off to avoid double-easing */
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  background-color: var(--noir);
+  color: var(--bone);
+  font-feature-settings: "ss01", "liga", "kern";
+  overflow-x: hidden;
+  cursor: none;
+}
+
+@media (pointer: coarse) {
+  body {
+    cursor: auto;
+  }
+}
+
+::selection {
+  background: rgba(201, 162, 90, 0.28);
+  color: #fff;
+}
+
+/* ----------------------------------------------------------------------------
+   Typographic primitives
+---------------------------------------------------------------------------- */
+.display {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 0.9;
+}
+
+.kicker {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.body-lg {
+  font-family: var(--font-inter), sans-serif;
+  font-weight: 300;
+  letter-spacing: 0.01em;
+  line-height: 1.7;
+}
+
+/* Gold gradient text for accent words */
+.gilt {
+  background: linear-gradient(
+    100deg,
+    #9c7836 0%,
+    #e7c987 28%,
+    #f0d49a 50%,
+    #c9a25a 72%,
+    #9c7836 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 7s linear infinite;
+}
+
+/* ----------------------------------------------------------------------------
+   Atmosphere
+---------------------------------------------------------------------------- */
+/* Soft cinematic light pools */
+.atmosphere {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(60vw 60vw at 78% -10%, rgba(22, 36, 61, 0.55), transparent 60%),
+    radial-gradient(50vw 40vw at 8% 18%, rgba(201, 162, 90, 0.06), transparent 55%),
+    radial-gradient(70vw 50vw at 50% 120%, rgba(12, 20, 34, 0.7), transparent 60%);
+}
+
+/* Film grain overlay */
+.grain {
+  position: fixed;
+  inset: -150%;
+  width: 400%;
+  height: 400%;
+  pointer-events: none;
+  z-index: 60;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  will-change: transform;
+}
+
+/* Thin gold hairline */
+.hairline {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201, 162, 90, 0.5), transparent);
+}
+
+/* ----------------------------------------------------------------------------
+   Reveal masks (used by JS-driven reveals as a no-JS fallback safety)
+---------------------------------------------------------------------------- */
+.line-mask {
+  overflow: hidden;
+  display: block;
+}
+
+.char,
+.line-inner {
+  display: inline-block;
+  will-change: transform;
+}
+
+/* Magnetic / hover affordances */
+.link-underline {
+  position: relative;
+}
+.link-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.6s var(--ease-luxe);
+}
+.link-underline:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gilt,
+  .grain {
+    animation: none !important;
+  }
+  * {
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Hide scrollbar but keep scrollable for horizontal rails */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
