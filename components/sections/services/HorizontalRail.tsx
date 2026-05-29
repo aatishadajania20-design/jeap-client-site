@@ -45,6 +45,9 @@ export default function HorizontalRail() {
       // Travel distance = how far the track overflows the viewport. Recomputed
       // on every refresh so resize / font-swap can never desync the pin.
       const getDistance = () => Math.max(0, trackEl.scrollWidth - window.innerWidth);
+      console.log("scrollWidth:", trackEl.scrollWidth);
+      console.log("windowWidth:", window.innerWidth);
+      console.log("distance:", getDistance());
 
       const mm = gsap.matchMedia();
 
@@ -65,7 +68,10 @@ export default function HorizontalRail() {
               invalidateOnRefresh: true,
             },
           });
-          return () => tween.scrollTrigger?.kill();
+          return () => {
+            tween.scrollTrigger?.kill();
+            tween.kill();
+          };
         }
       );
 
@@ -80,7 +86,10 @@ export default function HorizontalRail() {
   );
 
   return (
-    <section ref={container} className="relative z-10">
+    <section
+      ref={container}
+      className="relative z-10 min-h-screen overflow-hidden"
+    >
       {/* viewport mask: clips on desktop (pin translates the track),
           native horizontal swipe on mobile */}
       <div className="no-scrollbar overflow-x-auto overflow-y-hidden md:overflow-hidden">

@@ -19,14 +19,17 @@ export default function ProjectIndex() {
     <section className="relative z-10">
       {/* Fixed backdrop preview */}
       <div className="pointer-events-none fixed inset-0 z-0 hidden lg:block">
-        <AnimatePresence mode="wait">
+        <AnimatePresence initial={false} mode="sync">
           <motion.div
             key={active}
-            initial={{ opacity: 0, scale: 1.06 }}
-            animate={{ opacity: hovering ? 0.5 : 0, scale: 1 }}
+            initial={{ opacity: 0, scale: 1.015 }}
+            animate={{
+              opacity: hovering ? 0.38 : 0,
+              scale: 1,
+            }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute inset-0"
+            className="absolute inset-0 will-change-transform will-change-opacity"
           >
             <Visual tint={PROJECTS[active].tint} />
           </motion.div>

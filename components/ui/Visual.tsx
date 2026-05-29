@@ -1,5 +1,6 @@
 "use client";
 
+import { memo } from "react";
 import { cn } from "@/lib/utils";
 
 /**
@@ -8,7 +9,7 @@ import { cn } from "@/lib/utils";
  * light and a faint frame — so compositions still read as luxury imagery.
  * Drop real <Image> sources in here later without touching layouts.
  */
-export default function Visual({
+function Visual({
   tint = "#c9a25a",
   label,
   index,
@@ -65,3 +66,5 @@ export default function Visual({
     </div>
   );
 }
+
+export default memo(Visual);

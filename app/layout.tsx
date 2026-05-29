@@ -37,11 +37,10 @@ export default function RootLayout({
             hero. All ambience now lives ONLY inside the hero's own WebGL canvas;
             every other section renders on a clean, fully opaque background. */}
         <Cursor />
-        <SmoothScroll>
-          <Navbar />
-          <main className="relative z-10 bg-noir">{children}</main>
-          <Footer />
-        </SmoothScroll>
+        <SmoothScroll />
+        <Navbar />
+        <main className="relative z-10 bg-noir">{children}</main>
+        <Footer />
       </body>
     </html>
   );

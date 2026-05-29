@@ -31,7 +31,7 @@ function ServiceCardBase({ service, active, onActivate, onDeactivate }: Props) {
       onMouseEnter={enter}
       onMouseLeave={leave}
       data-cursor="discipline"
-      className="group relative flex h-[68vh] min-h-[460px] w-[82vw] shrink-0 flex-col justify-between overflow-hidden border border-white/10 p-8 sm:w-[56vw] md:w-[42vw] md:p-12 lg:w-[34vw]"
+      className="group relative flex h-[68vh] min-h-[460px] w-[82vw] shrink-0 flex-col justify-between overflow-hidden border border-white/10 p-8 sm:w-[56vw] md:w-[42vw] md:p-12 lg:w-[40vw]"
     >
       {/* WebGL hover field — single active canvas, never interactive */}
       <AnimatePresence>
