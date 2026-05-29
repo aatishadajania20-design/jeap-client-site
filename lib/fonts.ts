@@ -1,4 +1,17 @@
-import { Fraunces, Inter } from "next/font/google";
+import { Fraunces, Inter, Anton } from "next/font/google";
+
+/**
+ * HERO DISPLAY — Anton.
+ * A condensed, inherently heavy grotesque used ONLY for the hero title: massive,
+ * sculptural, commanding (a free stand-in for Druk's fashion-campaign energy).
+ * Single weight (400 = its native black), exposed as `--font-anton`.
+ */
+export const anton = Anton({
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+  variable: "--font-anton",
+});
 
 /**
  * DISPLAY / EDITORIAL FACE.

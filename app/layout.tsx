@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { display, inter } from "@/lib/fonts";
+import { display, inter, anton } from "@/lib/fonts";
 import { SITE } from "@/lib/site";
 import SmoothScroll from "@/components/providers/SmoothScroll";
 import Navbar from "@/components/layout/Navbar";
@@ -29,7 +29,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${display.variable} ${inter.variable}`}>
+    <html lang="en" className={`${display.variable} ${inter.variable} ${anton.variable}`}>
       <body className="font-body antialiased">
         <Preloader />
         {/* NOTE: Both the page-wide `.atmosphere` gradient AND the global film
