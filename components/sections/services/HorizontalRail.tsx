@@ -18,31 +18,48 @@ export default function HorizontalRail() {
   const track = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const mm = gsap.matchMedia();
+    const sectionEl = section.current;
+    const trackEl = track.current;
+    if (!sectionEl || !trackEl) return;
 
-    mm.add("(min-width: 768px)", () => {
-      if (reduce) return;
-      const el = track.current!;
-      const distance = el.scrollWidth - window.innerWidth;
+    // distance the track must travel = its overflow past the viewport.
+    // Recomputed on every refresh (fonts/resize) via the function form below.
+    const getDistance = () => Math.max(0, trackEl.scrollWidth - window.innerWidth);
 
-      const tween = gsap.to(el, {
-        x: -distance,
-        ease: "none",
-        scrollTrigger: {
-          trigger: section.current,
-          start: "top top",
-          end: () => `+=${distance + window.innerHeight * 0.6}`,
-          scrub: 0.8,
-          pin: true,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-        },
+    const ctx = gsap.context(() => {
+      const mm = gsap.matchMedia();
+
+      mm.add("(min-width: 768px) and (prefers-reduced-motion: no-preference)", () => {
+        gsap.to(trackEl, {
+          x: () => -getDistance(),
+          ease: "none",
+          scrollTrigger: {
+            trigger: sectionEl,
+            start: "top top",
+            end: () => "+=" + getDistance(),
+            scrub: 1,
+            pin: true,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+          },
+        });
       });
-      return () => tween.scrollTrigger?.kill();
-    });
+    }, sectionEl);
 
-    return () => mm.revert();
+    // Positions depend on final layout — recompute once fonts/images settle so
+    // the pin engages at the correct scroll offset (no blank gap).
+    const refresh = () => ScrollTrigger.refresh();
+    window.addEventListener("load", refresh);
+    if (typeof document !== "undefined" && document.fonts) {
+      document.fonts.ready.then(refresh);
+    }
+    const t = window.setTimeout(refresh, 300);
+
+    return () => {
+      window.removeEventListener("load", refresh);
+      window.clearTimeout(t);
+      ctx.revert();
+    };
   }, []);
 
   return (

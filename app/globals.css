@@ -37,7 +37,10 @@ body {
   background-color: var(--noir);
   color: var(--bone);
   font-feature-settings: "ss01", "liga", "kern";
-  overflow-x: hidden;
+  /* `clip` (not `hidden`) stops the horizontal scrollbar WITHOUT turning the
+     body into a scroll container — `hidden` would force overflow-y:auto, hijack
+     the scroller from the viewport, and break ScrollTrigger pinning + Lenis. */
+  overflow-x: clip;
   cursor: none;
 }
 
