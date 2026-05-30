@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  images: {
+    qualities: [75, 100],
+  },
   // NOTE: `three` is intentionally NOT transpiled. Adding it to
   // transpilePackages forces Next to re-compile the entire (very large) three.js
   // bundle and balloons the "Collecting build traces" step's memory/time, which

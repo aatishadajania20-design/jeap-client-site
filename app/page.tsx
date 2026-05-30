@@ -2,6 +2,8 @@ import Hero from "@/components/sections/home/Hero";
 import Manifesto from "@/components/sections/home/Manifesto";
 import ServicesPreview from "@/components/sections/home/ServicesPreview";
 import WorkPreview from "@/components/sections/home/WorkPreview";
+import PastProjects from "@/components/sections/PastProjects";
+import CelebGuests from "@/components/sections/CelebGuests";
 import Marquee from "@/components/ui/Marquee";
 
 export default function HomePage() {
@@ -17,6 +19,8 @@ export default function HomePage() {
       </section>
 
       <ServicesPreview />
+      <PastProjects />
+      <CelebGuests />
       <WorkPreview />
     </>
   );

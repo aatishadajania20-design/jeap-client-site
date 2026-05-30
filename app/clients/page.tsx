@@ -51,6 +51,12 @@ export default function ClientsPage() {
               </article>
             ))}
           </div>
+
+          <p className="mx-auto mt-16 max-w-2xl text-center text-sm italic text-white/50">
+            Our events have been graced by celebrated personalities including{" "}
+            <span className="text-gold">Sunil Shetty</span> and{" "}
+            <span className="text-gold">Huma Qureshi</span>
+          </p>
         </div>
       </section>
     </>
