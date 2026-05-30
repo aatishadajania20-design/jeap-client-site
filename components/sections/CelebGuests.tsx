@@ -23,14 +23,14 @@ const GUESTS: Guest[] = [
     name: "Sunil Shetty",
     title: "Bollywood Icon · Guest of Honour",
     event: "NextGen Icon Awards, Chapter I",
-    src: "/images/celebs/sunil-shetty3.jpeg",
+    src: "/images/celebs/sunil.jpeg",
     alt: "Sunil Shetty, Bollywood icon and Guest of Honour",
   },
   {
     name: "Huma Qureshi",
     title: "Bollywood Star · Chief Guest",
     event: "NextGen Icon Awards, Chapter II",
-    src: "/images/celebs/huma-qureshi.jpg",
+    src: "/images/celebs/huma.jpg",
     alt: "Huma Qureshi, Bollywood star and Chief Guest",
   },
 ];

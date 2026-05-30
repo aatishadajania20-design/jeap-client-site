@@ -4,7 +4,7 @@ import { useRef, type ReactNode } from "react";
 import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
 
 const TEXT =
-  "We believe luxury is not loud. It is the discipline of restraint — the single gesture that says everything. We direct light, motion and silence until a brand stops being seen and starts being felt.";
+  "Great events are remembered long after the lights fade. We design award ceremonies, celebrity experiences, and landmark productions that celebrate achievement with precision, elegance, and impact.";
 
 function Word({
   children,
