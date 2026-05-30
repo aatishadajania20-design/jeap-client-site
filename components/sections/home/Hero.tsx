@@ -16,6 +16,12 @@ const HeroCanvas = dynamic(() => import("@/components/sections/home/HeroCanvas")
   ssr: false,
 });
 
+// Trophy lives in its own tiny transparent canvas, layered between the
+// atmosphere and the foreground type. Lazy-loaded the same way.
+const TrophyCanvas = dynamic(() => import("@/components/sections/home/TrophyCanvas"), {
+  ssr: false,
+});
+
 // The title broken into two cinematic lines for stronger line-mask reveals.
 const TITLE_LINES = ["Jeen Eventz", "and Planners"];
 
@@ -24,6 +30,7 @@ type Tier = "high" | "low" | "off" | null;
 export default function Hero() {
   const root = useRef<HTMLDivElement>(null);
   const canvasWrap = useRef<HTMLDivElement>(null);
+  const trophyWrap = useRef<HTMLDivElement>(null);
   const midLight = useRef<HTMLDivElement>(null);
   const sweep = useRef<HTMLDivElement>(null);
   const content = useRef<HTMLDivElement>(null);
@@ -60,6 +67,7 @@ export default function Hero() {
       if (reduce) {
         progress.current.reveal = 1;
         gsap.set([canvasWrap.current, tagline.current, buttons.current], { opacity: 1 });
+        gsap.set(trophyWrap.current, { opacity: 1, y: 0 });
         gsap.set(content.current, { opacity: 1 });
         if (lines) gsap.set(lines, { yPercent: 0 });
         gsap.set(line.current, { scaleX: 1, opacity: 0.4 });
@@ -68,6 +76,7 @@ export default function Hero() {
 
       // --- initial states ----------------------------------------------------
       gsap.set(canvasWrap.current, { opacity: 0 });
+      gsap.set(trophyWrap.current, { opacity: 0, y: 24 });
       gsap.set(line.current, { scaleX: 0, opacity: 1 });
       gsap.set(title.current, { scale: 1.08 });
       if (lines) gsap.set(lines, { yPercent: 120 });
@@ -94,6 +103,9 @@ export default function Hero() {
         .to(progress.current, { reveal: 1, duration: 1.1, ease: "power2.inOut" }, 1.6)
         .to(progress.current, { bloom: 1, duration: 0.5, ease: "power2.out" }, 1.55)
         .to(progress.current, { bloom: 0, duration: 1.4, ease: "power2.inOut" }, 2.05)
+
+        // the ghosted trophy rises into place and fades in WITH the bloom moment
+        .to(trophyWrap.current, { opacity: 1, y: 0, duration: 1.6, ease: "power2.out" }, 1.5)
         .fromTo(
           sweep.current,
           { xPercent: -130, opacity: 0 },
@@ -121,6 +133,7 @@ export default function Hero() {
         scrollTrigger: scrollCfg,
       });
       gsap.to(canvasWrap.current, { yPercent: -14, ease: "none", scrollTrigger: scrollCfg });
+      gsap.to(trophyWrap.current, { yPercent: -14, opacity: 0, ease: "none", scrollTrigger: scrollCfg });
       gsap.to(progress.current, { scroll: 1, ease: "none", scrollTrigger: scrollCfg });
     },
     { scope: root }
@@ -170,6 +183,16 @@ export default function Hero() {
             }}
           />
         )}
+      </div>
+
+      {/* ghosted trophy — its own transparent canvas, above the atmosphere but
+          below the foreground type so the title always reads cleanly in front */}
+      <div
+        ref={trophyWrap}
+        aria-hidden
+        className="pointer-events-none absolute inset-0 z-[2] opacity-0 will-change-transform"
+      >
+        {tier && tier !== "off" ? <TrophyCanvas dpr={dpr} /> : null}
       </div>
 
       {/* mid layer — soft gold diffusion that parallaxes against the cursor */}
