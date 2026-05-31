@@ -42,7 +42,7 @@ export default function Manifesto() {
         {words.map((word, i) => {
           const start = i / words.length;
           const end = start + 1 / words.length;
-          const accent = ["luxury", "felt.", "restraint"].some((a) =>
+          const accent = ["remembered", "fade.", "celebrity","elegance,"].some((a) =>
             word.includes(a)
           );
           return (

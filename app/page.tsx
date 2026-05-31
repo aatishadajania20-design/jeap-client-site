@@ -14,8 +14,8 @@ export default function HomePage() {
 
       {/* Animated editorial typography scene */}
       <section className="relative z-10 border-y border-white/5 py-12">
-        <Marquee text="Art Direction" baseVelocity={-2.4} />
-        <Marquee text="Motion · Film · Light" baseVelocity={2} className="mt-2 opacity-60" />
+        <Marquee text="SPOTLIGHT" baseVelocity={-2.4} />
+        <Marquee text="Awards · Prestige · Legacy" baseVelocity={2} className="mt-2 opacity-60" />
       </section>
 
       <ServicesPreview />
